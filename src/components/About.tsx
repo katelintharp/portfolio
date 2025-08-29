@@ -131,7 +131,7 @@ const About: React.FC = () => {
                     <Grid templateColumns={{ base: '1fr', md: '1fr 2fr' }} gap={12} alignItems="center">
                         <Box position="relative">
                             <Image
-                                src="/images/Headshot.png"
+                                src={`${import.meta.env.BASE_URL}images/Headshot.png`}
                                 alt="Katelin Tharp"
                                 w="full"
                                 borderRadius="20px"
