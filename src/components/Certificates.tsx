@@ -155,6 +155,19 @@ const Certificates: React.FC = () => {
             ],
             badge: 'COMPLETE',
         },
+        {
+            title: 'B.S. Computer Science and Cognitive Psychology',
+            issuer: 'Northeastern University',
+            date: 'December 2024',
+            icon: '🎓',
+            color: 'brand.warm',
+            details: [
+                'Minor: English',
+                'GPA: 3.90',
+                'Psych Courses: Learning & Motivation, Developmental Psychology',
+                'CS Courses: Human-Computer Interaction, Artificial Intelligence',
+            ],
+        },
     ];
 
     const upcomingCredentials = [

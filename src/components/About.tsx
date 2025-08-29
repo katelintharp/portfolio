@@ -140,15 +140,15 @@ const About: React.FC = () => {
                         </Box>
                         <VStack align="start" spacing={5}>
                             <Text color="brand.textBody" lineHeight="1.9">
-                                As a Student Teacher at Berkeley Teacher Education Program and a Software Engineer with experience at
-                                eMoney Advisor, I bring a unique perspective to both the classroom and the codebase. My journey combines
-                                rigorous technical training (B.S. in Computer Science and Cognitive Psychology, GPA: 3.90) with a deep
-                                passion for education.
+                                As an aspiring educator at Berkeley's Teacher Education Program (BTEP) with experience
+                                in software engineering, I bring a unique perspective to the classroom. 
+                                My journey combines rigorous technical training with a passion for education.
                             </Text>
                             <Text color="brand.textBody" lineHeight="1.9">
-                                I've had the privilege of supporting over 1,000 students across three continents, from Northeastern
-                                University Boston to London's Global Scholars program. My approach focuses on making learning accessible,
-                                engaging, and relevant—whether I'm teaching functional programming or developing educational technology.
+                                I've had the privilege of supporting thousands of student across continents, from Northeastern
+                                University's home campus in Boston to its London's Global Scholars program. 
+                                My approach focuses on making learning accessible, engaging, and relevant—whether 
+                                I'm teaching functional programming or English classics.
                             </Text>
                             <Text color="brand.textBody" lineHeight="1.9">
                                 Recognized with the 2025 Khoury College Undergraduate Teaching Award, I'm committed to creating

@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
                         fontStyle="italic"
                         fontFamily="Georgia, serif"
                     >
-                        Educator • Software Engineer • Learning Experience Designer
+                        Educator • Software Engineer
                     </Text>
 
                     <Text
