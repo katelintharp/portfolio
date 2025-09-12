@@ -5,15 +5,13 @@ import {
     extendTheme,
     type ThemeConfig,
 } from '@chakra-ui/react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Experience from './components/Experience';
-import Projects from './components/Projects';
-import Awards from './components/Awards';
-import Certificates from './components/Certificates';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import KhouryAwardPage from './pages/projects/KhouryAwardPage';
+import WordlePage from './pages/projects/WordlePage';
+import ReversiPage from './pages/projects/ReversiPage';
+import FileSystemPage from './pages/projects/FileSystemPage';
+import PortfolioPage from './pages/projects/PortfolioPage';
 
 // Custom theme with soft pastel colors
 const config: ThemeConfig = {
@@ -60,15 +58,16 @@ function App() {
     return (
         <ChakraProvider theme={theme}>
             <Box minH="100vh" overflowX="hidden">
-                <Navbar />
-                <Hero />
-                <About />
-                <Experience />
-                <Projects />
-                <Awards />
-                <Certificates />
-                <Contact />
-                <Footer />
+                <Router basename={import.meta.env.BASE_URL}>
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/projects/khoury-award" element={<KhouryAwardPage />} />
+                        <Route path="/projects/wordle" element={<WordlePage />} />
+                        <Route path="/projects/reversi" element={<ReversiPage />} />
+                        <Route path="/projects/file-system" element={<FileSystemPage />} />
+                        <Route path="/projects/portfolio" element={<PortfolioPage />} />
+                    </Routes>
+                </Router>
             </Box>
         </ChakraProvider>
     );

@@ -58,10 +58,6 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
                     boxShadow="0 3px 15px rgba(156, 163, 219, 0.15)"
                     position="relative"
                     transition="all 0.3s ease"
-                    _hover={{
-                        transform: 'translateY(-5px)',
-                        boxShadow: '0 5px 25px rgba(156, 163, 219, 0.25)',
-                    }}
                     _before={{
                         content: '""',
                         position: 'absolute',

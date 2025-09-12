@@ -35,6 +35,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                                                  }) => (
     <Box
         as={link ? Link : Box}
+        href={link}
+        target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
         _hover={{ textDecoration: 'none' }}
     >
@@ -110,8 +112,8 @@ const Projects: React.FC = () => {
             description: 'Recognized for exceptional leadership as lead TA in London, three years of teaching, and innovative cross-continental program development.',
             tags: ['Teaching Excellence', 'Leadership', 'Innovation'],
             gradient: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-            link: 'https://www.khoury.northeastern.edu/meet-the-2025-khoury-college-award-winners/',
-            isExternal: true,
+            link: '/portfolio/projects/khoury-award',
+            isExternal: false,
         },
         {
             icon: '🎮',
@@ -119,8 +121,8 @@ const Projects: React.FC = () => {
             description: 'Full-stack integration of the NYT Wordle game into an open-source virtual meeting platform, enabling collaborative word-guessing in virtual spaces.',
             tags: ['React', 'TypeScript', 'Game Development', 'WebSockets'],
             gradient: 'linear-gradient(135deg, #F4B8C5 0%, #FFB5C5 100%)',
-            link: 'https://github.com/neu-cs4530/fall-22-team-project-group-307',
-            isExternal: true,
+            link: '/portfolio/projects/wordle',
+            isExternal: false,
         },
         {
             icon: '🎯',
@@ -128,8 +130,8 @@ const Projects: React.FC = () => {
             description: 'Implementation of the classic Reversi game with advanced AI opponents using minimax and expectimax algorithms for human vs. human, human vs. AI, and AI vs. AI gamemodes.',
             tags: ['Python', 'AI Algorithms', 'Game Theory', 'Minimax'],
             gradient: 'linear-gradient(135deg, #A8D5BA 0%, #90C9A4 100%)',
-            link: 'https://github.com/katelintharp/reversi-ktharp',
-            isExternal: true,
+            link: '/portfolio/projects/reversi',
+            isExternal: false,
         },
         {
             icon: '💾',
@@ -137,8 +139,8 @@ const Projects: React.FC = () => {
             description: 'Low-level file system implementation supporting 1MB disk images with proper allocation, deallocation, and nested directory structures.',
             tags: ['C', 'Assembly', 'Systems Programming', 'FUSE'],
             gradient: 'linear-gradient(135deg, #95B8F6 0%, #7FA3E0 100%)',
-            link: 'https://github.com/katelintharp/FileSystem/tree/main/FileSystem/project2-jaypat73-ktharp-main',
-            isExternal: true,
+            link: '/portfolio/projects/file-system',
+            isExternal: false,
         },
         {
             icon: '💼',
@@ -146,7 +148,7 @@ const Projects: React.FC = () => {
             description: 'This website! Modern, responsive portfolio built with React, TypeScript, and ChakraUI.',
             tags: ['React', 'TypeScript', 'ChakraUI', 'Web Design'],
             gradient: 'linear-gradient(135deg, #B8BEE8 0%, #9CA3DB 100%)',
-            link: '#home',
+            link: '/portfolio/projects/portfolio',
             isExternal: false,
         },
     ];

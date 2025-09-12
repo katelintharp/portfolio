@@ -33,10 +33,6 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ icon, title, skills, colo
         borderRadius="15px"
         boxShadow="0 3px 15px rgba(156, 163, 219, 0.15)"
         transition="all 0.3s ease"
-        _hover={{
-            transform: 'translateY(-5px)',
-            boxShadow: '0 5px 25px rgba(156, 163, 219, 0.25)',
-        }}
     >
         <HStack mb={4} color={color}>
             <Icon as={icon} boxSize={5} />
@@ -56,11 +52,6 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ icon, title, skills, colo
                     fontSize="0.85rem"
                     fontWeight="400"
                     mb={2}
-                    _hover={{
-                        bg: color,
-                        color: 'white',
-                        transform: 'translateY(-2px)',
-                    }}
                     transition="all 0.2s ease"
                 >
                     {skill}
