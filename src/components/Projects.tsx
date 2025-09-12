@@ -33,12 +33,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                                                      link,
                                                      isExternal = false,
                                                  }) => (
-    <Box
-        as={link ? Link : Box}
-        href={link}
+    <Link
+        href={link ?? '#'}
+        _hover={{ textDecoration: 'none' }}
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
-        _hover={{ textDecoration: 'none' }}
     >
         <Box
             bg="white"
@@ -101,7 +100,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 </HStack>
             </VStack>
         </Box>
-    </Box>
+    </Link>
 );
 
 const Projects: React.FC = () => {
