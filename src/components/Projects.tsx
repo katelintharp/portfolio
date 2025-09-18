@@ -143,7 +143,7 @@ const Projects: React.FC = () => {
         },
         {
             icon: '💼',
-            title: 'Professional Portfolio Website',
+            title: 'Portfolio Website',
             description: 'This website! Modern, responsive portfolio built with React, TypeScript, and ChakraUI.',
             tags: ['React', 'TypeScript', 'ChakraUI', 'Web Design'],
             gradient: 'linear-gradient(135deg, #B8BEE8 0%, #9CA3DB 100%)',

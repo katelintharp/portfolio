@@ -38,7 +38,7 @@ const PortfolioPage: React.FC = () => {
                     </HStack>
                     <VStack align="start" spacing={4}>
                         <Heading as="h1" size="3xl" color="white" fontWeight="300">
-                            💼 Professional Portfolio Website
+                            💼 Portfolio Website
                         </Heading>
                         <Text fontSize="xl" color="whiteAlpha.900">
                             Modern, Responsive Web Design with React
@@ -85,11 +85,6 @@ const PortfolioPage: React.FC = () => {
                             showcasing modern web development practices, responsive design principles, and thoughtful
                             user experience. Built to highlight my journey from software engineering to education,
                             it serves as both a professional showcase and a technical demonstration.
-                        </Text>
-                        <Text color="brand.textBody" fontSize="lg" lineHeight="1.8">
-                            The site features a carefully crafted design system with soft pastel colors, smooth
-                            animations, and intuitive navigation, all while maintaining excellent performance
-                            and accessibility standards.
                         </Text>
                     </Box>
 
@@ -152,26 +147,12 @@ const PortfolioPage: React.FC = () => {
                         <List spacing={4}>
                             <ListItem>
                                 <HStack align="start">
-                                    <Text fontSize="2xl" mt={-1}>🎨</Text>
-                                    <Box>
-                                        <Text fontWeight="500" color="brand.textDark">Custom Design System</Text>
-                                        <Text color="brand.textBody">
-                                            Carefully curated color palette with soft pastels that reflect approachability
-                                            and professionalism. Every color, spacing, and typography choice was
-                                            intentionally selected to create a cohesive visual experience.
-                                        </Text>
-                                    </Box>
-                                </HStack>
-                            </ListItem>
-                            <ListItem>
-                                <HStack align="start">
                                     <Text fontSize="2xl" mt={-1}>📱</Text>
                                     <Box>
                                         <Text fontWeight="500" color="brand.textDark">Fully Responsive</Text>
                                         <Text color="brand.textBody">
                                             Seamlessly adapts from mobile phones to ultra-wide desktop displays,
-                                            ensuring optimal viewing experience across all devices with thoughtful
-                                            breakpoints and flexible layouts.
+                                            ensuring optimal viewing experience across all devices.
                                         </Text>
                                     </Box>
                                 </HStack>
@@ -182,8 +163,7 @@ const PortfolioPage: React.FC = () => {
                                     <Box>
                                         <Text fontWeight="500" color="brand.textDark">Smooth Interactions</Text>
                                         <Text color="brand.textBody">
-                                            Subtle animations and transitions enhance user experience without
-                                            overwhelming. Hover effects, scroll animations, and page transitions
+                                            Subtle animations and transitions enhance user experience. Hover effects, scroll animations, and page transitions
                                             create a polished, professional feel.
                                         </Text>
                                     </Box>
