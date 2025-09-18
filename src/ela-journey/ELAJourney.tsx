@@ -192,28 +192,28 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
     // MAP test images - you'll need to save these in public/images/map/
     const mapImages = [
         {
-            src: '/images/map/language.PNG',
+            src: `${import.meta.env.BASE_URL}images/map/reading.png`,
             title: 'Reading',
             score: '242',
             date: 'August 31, 2015',
             color: '#4A90E2'
         },
         {
-            src: '/images/map/math.png',
+            src: `${import.meta.env.BASE_URL}images/map/math.png`,
             title: 'Mathematics',
             score: '248',
             date: 'August 31, 2015',
             color: '#E94B3C'
         },
         {
-            src: '/images/map/language.png',
+            src: `${import.meta.env.BASE_URL}images/map/language.png`,
             title: 'Language Usage',
             score: '235',
             date: 'August 31, 2015',
             color: '#50B83C'
         },
         {
-            src: '/images/map/science.png',
+            src: `${import.meta.env.BASE_URL}images/map/science.png`,
             title: 'Science - General Science',
             score: '225',
             date: 'September 1, 2015',
