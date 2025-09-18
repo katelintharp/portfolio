@@ -12,9 +12,18 @@ import {
     ScaleFade,
     SlideFade,
     IconButton,
-    Progress, Input,
+    Progress,
+    Input,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,
+    Image,
 } from '@chakra-ui/react';
-import { ArrowBackIcon } from '@chakra-ui/icons';
+import { ArrowBackIcon, ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 
@@ -177,6 +186,40 @@ const Scene1YCIS: React.FC<SceneProps> = ({ onNext }) => {
 const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
     const [scores, setScores] = useState<string[]>([]);
     const [books, setBooks] = useState<string[]>([]);
+    const { isOpen: isMapOpen, onOpen: onMapOpen, onClose: onMapClose } = useDisclosure();
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // MAP test images - you'll need to save these in public/images/map/
+    const mapImages = [
+        {
+            src: 'public/images/map/language.PNG',
+            title: 'Reading',
+            score: '242',
+            date: 'August 31, 2015',
+            color: '#4A90E2'
+        },
+        {
+            src: 'public/images/map/math.png',
+            title: 'Mathematics',
+            score: '248',
+            date: 'August 31, 2015',
+            color: '#E94B3C'
+        },
+        {
+            src: 'public/images/map/language.png',
+            title: 'Language Usage',
+            score: '235',
+            date: 'August 31, 2015',
+            color: '#50B83C'
+        },
+        {
+            src: 'public/images/map/science.png',
+            title: 'Science - General Science',
+            score: '225',
+            date: 'September 1, 2015',
+            color: '#9B59B6'
+        }
+    ];
 
     const testScores = [
         { id: 'star1', label: 'STAR Reading', score: '99th percentile', icon: '⭐' },
@@ -200,6 +243,11 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
         if (!scores.includes(id)) {
             setScores([...scores, id]);
         }
+        // Special case for MAP Test - open slideshow
+        if (id === 'map') {
+            onMapOpen();
+            setCurrentSlide(0);
+        }
     };
 
     const collectBook = (id: string) => {
@@ -214,26 +262,22 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
 
     // Randomized position calculation for scattered effect
     const getRandomTestPosition = (index: number) => {
-        // Use a seeded random based on index for consistency
         const seed = index * 126;
         const random1 = (Math.sin(seed) * 10000) % 1;
         const random2 = (Math.sin(seed + 1) * 10000) % 1;
-
         return {
-            left: `${10 + Math.abs(random1) * 30}%`,  // Between 10% and 40%
-            top: `${20 + Math.abs(random2) * 60}%`,   // Between 20% and 80%
+            left: `${10 + Math.abs(random1) * 30}%`,
+            top: `${20 + Math.abs(random2) * 60}%`,
         };
     };
 
     const getRandomBookPosition = (index: number) => {
-        // Use a different seed for books
         const seed = (index + 10) * 132;
         const random1 = (Math.sin(seed) * 10000) % 1;
         const random2 = (Math.sin(seed + 1) * 10000) % 1;
-
         return {
-            left: `${60 + Math.abs(random1) * 30}%`,  // Between 60% and 90%
-            top: `${20 + Math.abs(random2) * 60}%`,   // Between 20% and 80%
+            left: `${60 + Math.abs(random1) * 30}%`,
+            top: `${20 + Math.abs(random2) * 60}%`,
         };
     };
 
@@ -266,7 +310,7 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                     </HStack>
 
                     <Box position="relative" w="full" h="550px">
-                        {/* Left side label */}
+                        {/* Labels */}
                         <Text
                             position="absolute"
                             left="25%"
@@ -280,7 +324,6 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                             Test Scores
                         </Text>
 
-                        {/* Right side label */}
                         <Text
                             position="absolute"
                             left="75%"
@@ -294,7 +337,7 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                             Books Read
                         </Text>
 
-                        {/* Test Scores (left side) - randomized positions */}
+                        {/* Test Scores */}
                         {testScores.map((test, index) => {
                             const position = getRandomTestPosition(index);
                             const isCollected = scores.includes(test.id);
@@ -332,7 +375,7 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                             );
                         })}
 
-                        {/* Books (right side) - randomized positions */}
+                        {/* Books */}
                         {bookCollection.map((book, index) => {
                             const position = getRandomBookPosition(index);
                             const isCollected = books.includes(book.id);
@@ -365,7 +408,6 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                             );
                         })}
 
-                        {/* Central divider */}
                         <Box
                             position="absolute"
                             left="50%"
@@ -376,7 +418,7 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                             transform="translateX(-50%)"
                         />
 
-                        {/* Bottom message and button */}
+                        {/* Bottom message */}
                         <Box position="absolute" bottom="-15%" left="50%" transform="translateX(-50%)" w="full">
                             <VStack spacing={4}>
                                 <Text color="brand.textBody" fontSize="sm" textAlign="center">
@@ -387,9 +429,9 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                                     <Fade in={true}>
                                         <VStack spacing={3}>
                                             <Text color="brand.primary" fontWeight="500" textAlign="center" maxW="500px">
-                                                "I sat diligently through standardized tests and felt disappointed 
+                                                "I sat diligently through standardized tests and felt disappointed
                                                 when I tested at grade level. Positive reinforcement told me I was
-                                                supposed to be good at this, and that all expectations said it 
+                                                supposed to be good at this, and that all expectations said it
                                                 should stay that way."
                                             </Text>
                                             <Button
@@ -425,6 +467,79 @@ const Scene2Elementary: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                     />
                 </VStack>
             </Container>
+
+            {/* MAP Test Modal */}
+            <Modal isOpen={isMapOpen} onClose={onMapClose} size="6xl">
+                <ModalOverlay />
+                <ModalContent maxW="90vw" maxH="90vh">
+                    <ModalHeader bg={mapImages[currentSlide].color} color="white">
+                        <Text fontSize="xl">MAP Test Results - 6th Grade</Text>
+                        <Text fontSize="sm" fontWeight="normal">
+                            {mapImages[currentSlide].title} | Score: {mapImages[currentSlide].score}
+                        </Text>
+                    </ModalHeader>
+                    <ModalCloseButton color="white" />
+                    <ModalBody p={0} bg="gray.100">
+                        <Box position="relative" w="full" h="70vh">
+                            <Image
+                                src={mapImages[currentSlide].src}
+                                alt={`MAP ${mapImages[currentSlide].title} Test Results`}
+                                w="full"
+                                h="full"
+                                objectFit="contain"
+                                bg="white"
+                            />
+
+                            {/* Navigation Arrows */}
+                            <IconButton
+                                aria-label="Previous slide"
+                                icon={<ChevronLeftIcon />}
+                                position="absolute"
+                                left="4"
+                                top="50%"
+                                transform="translateY(-50%)"
+                                onClick={() => setCurrentSlide(prev => prev > 0 ? prev - 1 : mapImages.length - 1)}
+                                size="lg"
+                                bg="whiteAlpha.800"
+                                _hover={{ bg: 'white' }}
+                            />
+
+                            <IconButton
+                                aria-label="Next slide"
+                                icon={<ChevronRightIcon />}
+                                position="absolute"
+                                right="4"
+                                top="50%"
+                                transform="translateY(-50%)"
+                                onClick={() => setCurrentSlide(prev => prev < mapImages.length - 1 ? prev + 1 : 0)}
+                                size="lg"
+                                bg="whiteAlpha.800"
+                                _hover={{ bg: 'white' }}
+                            />
+                        </Box>
+
+                        {/* Slide Indicators */}
+                        <HStack justify="center" py={4} spacing={2}>
+                            {mapImages.map((_, idx) => (
+                                <Box
+                                    key={idx}
+                                    w="10px"
+                                    h="10px"
+                                    borderRadius="full"
+                                    bg={idx === currentSlide ? mapImages[currentSlide].color : 'gray.400'}
+                                    cursor="pointer"
+                                    onClick={() => setCurrentSlide(idx)}
+                                    transition="all 0.3s"
+                                />
+                            ))}
+                        </HStack>
+
+                        <Text fontSize="xs" color="gray.600" textAlign="center" pb={4}>
+                            {mapImages[currentSlide].date} | Katelin's actual 6th grade MAP scores
+                        </Text>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </Box>
     );
 };
@@ -446,7 +561,6 @@ const Scene3HighSchool: React.FC<SceneProps> = ({ onNext, onPrev }) => {
         if (index <= currentStep + 1 && index < steps.length && !isCollapsing) {
             setCurrentStep(index);
 
-            // Handle pandemic year with rumble then collapse
             if (steps[index].isPandemic) {
                 setRumbling(true);
                 setTimeout(() => {
@@ -460,12 +574,11 @@ const Scene3HighSchool: React.FC<SceneProps> = ({ onNext, onPrev }) => {
         }
     };
 
-    // Calculate staircase positions
     const getStepStyle = (index: number) => {
-        const baseLeft = 10; // Start from 10%
-        const leftIncrement = 15; // Move 15% right each step
-        const baseBottom = 25; // Start from 25% bottom
-        const bottomIncrement = 12; // Move 12% up each step
+        const baseLeft = 10;
+        const leftIncrement = 15;
+        const baseBottom = 25;
+        const bottomIncrement = 12;
 
         return {
             left: `${baseLeft + (index * leftIncrement)}%`,
@@ -500,7 +613,6 @@ const Scene3HighSchool: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                         Editor-In-Chief.
                     </Text>
                     <Box position="relative" w="full" h="600px">
-                        {/* School building backdrop */}
                         <Text
                             position="absolute"
                             top="5%"
@@ -514,7 +626,6 @@ const Scene3HighSchool: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                             🏫
                         </Text>
 
-                        {/* Decorative elements */}
                         {currentStep >= 2 && !isCollapsing && (
                             <Fade in={true}>
                                 <Text
@@ -530,7 +641,6 @@ const Scene3HighSchool: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                             </Fade>
                         )}
 
-                        {/* Staircase Steps */}
                         {steps.map((step, index) => {
                             const stepStyle = getStepStyle(index);
                             const isActive = index <= currentStep;
@@ -554,7 +664,6 @@ const Scene3HighSchool: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                                         animationDelay: isCollapsing ? `${index * 0.2}s` : '0s',
                                     }}
                                 >
-                                    {/* Step platform */}
                                     <Box
                                         bg={isActive ? (step.isPandemic ? 'gray.700' : 'white') : 'whiteAlpha.400'}
                                         borderRadius="lg"
@@ -602,7 +711,6 @@ const Scene3HighSchool: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                                         </HStack>
                                     </Box>
 
-                                    {/* Connecting line to next step */}
                                     {index < steps.length - 1 && isActive && !isCollapsing && (
                                         <Box
                                             position="absolute"
@@ -618,7 +726,6 @@ const Scene3HighSchool: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                             );
                         })}
 
-                        {/* Progress hint */}
                         {currentStep >= 3 && !isCollapsing && !rumbling && (
                             <Fade in={true}>
                                 <Text
@@ -636,7 +743,6 @@ const Scene3HighSchool: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                             </Fade>
                         )}
 
-                        {/* Start hint */}
                         {currentStep === -1 && (
                             <Text
                                 position="absolute"
@@ -686,7 +792,7 @@ const Scene4PragmaticChoice: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                                 </Text>
                                 <Text fontSize="lg" color="brand.textBody" textAlign="center">
                                     My mom with her harsh pragmatism and my dad with his passion for engineering
-                                    pushed me to abandon English in favor of STEM. 
+                                    pushed me to abandon English in favor of STEM.
                                 </Text>
                                 <Text fontSize="md" color="brand.textLight" textAlign="center" fontStyle="italic">
                                     "You need something practical. Something stable. Something that will always have jobs."
@@ -711,7 +817,6 @@ const Scene4PragmaticChoice: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                                 </Text>
 
                                 <HStack spacing={12} align="stretch">
-                                    {/* English Choice */}
                                     <Box
                                         p={8}
                                         bg="white"
@@ -737,7 +842,6 @@ const Scene4PragmaticChoice: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                                         </VStack>
                                     </Box>
 
-                                    {/* CS Choice */}
                                     <Box
                                         p={8}
                                         bg="white"
@@ -800,7 +904,7 @@ const Scene4PragmaticChoice: React.FC<SceneProps> = ({ onNext, onPrev }) => {
                                     </Text>
                                 </Box>
                                 <Text fontSize="lg" color="brand.textBody" textAlign="center">
-                                    I take a wide variety of English classes in undergrad: Style & Editing, 
+                                    I take a wide variety of English classes in undergrad: Style & Editing,
                                     Writing to Heal, Advanced Writing in the Technical Professions. I keep writing.
                                 </Text>
                                 <Button
@@ -1116,7 +1220,6 @@ const ELAJourney: React.FC = () => {
 
     return (
         <Box minH="100vh" position="relative">
-            {/* Progress indicator */}
             <Box
                 position="fixed"
                 top="0"
@@ -1134,7 +1237,6 @@ const ELAJourney: React.FC = () => {
                 />
             </Box>
 
-            {/* Home button */}
             <Button
                 as={Link}
                 to="/"
@@ -1148,7 +1250,6 @@ const ELAJourney: React.FC = () => {
                 Home
             </Button>
 
-            {/* Scene content */}
             <Fade in={true} key={currentScene}>
                 {renderScene()}
             </Fade>
