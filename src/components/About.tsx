@@ -6,89 +6,13 @@ import {
     Text,
     Grid,
     VStack,
-    HStack,
-    SimpleGrid,
-    Tag,
-    Icon,
     Image,
+    Link, HStack, Button,
 } from '@chakra-ui/react';
-import {
-    FaGraduationCap,
-    FaLaptopCode,
-    FaBrain,
-    FaUsers,
-} from 'react-icons/fa';
-
-interface SkillCategoryProps {
-    icon: React.ElementType;
-    title: string;
-    skills: string[];
-    color: string;
-}
-
-const SkillCategory: React.FC<SkillCategoryProps> = ({ icon, title, skills, color }) => (
-    <Box
-        bg="white"
-        p={6}
-        borderRadius="15px"
-        boxShadow="0 3px 15px rgba(156, 163, 219, 0.15)"
-        transition="all 0.3s ease"
-    >
-        <HStack mb={4} color={color}>
-            <Icon as={icon} boxSize={5} />
-            <Text fontWeight="500" fontSize="1.1rem" fontFamily="heading">
-                {title}
-            </Text>
-        </HStack>
-        <HStack wrap="wrap" spacing={2}>
-            {skills.map((skill) => (
-                <Tag
-                    key={skill}
-                    bg="brand.border"
-                    color="brand.textDark"
-                    px={3}
-                    py={1}
-                    borderRadius="20px"
-                    fontSize="0.85rem"
-                    fontWeight="400"
-                    mb={2}
-                    transition="all 0.2s ease"
-                >
-                    {skill}
-                </Tag>
-            ))}
-        </HStack>
-    </Box>
-);
-
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import {Link as RouterLink} from "react-router-dom";
+import React from "react";
 const About: React.FC = () => {
-    const skillCategories = [
-        {
-            icon: FaGraduationCap,
-            title: 'Education',
-            skills: ['Curriculum Design', 'Assessment', 'EdTech', 'Cross-Cultural Teaching'],
-            color: 'brand.primary',
-        },
-        {
-            icon: FaLaptopCode,
-            title: 'Technical',
-            skills: ['Full-Stack', 'React', 'Python', 'Java', 'C#/.NET'],
-            color: 'brand.secondary',
-        },
-        {
-            icon: FaBrain,
-            title: 'Cognitive Science',
-            skills: ['Learning Theory', 'UX Research', 'HCI', 'Memory & Cognition'],
-            color: 'brand.accent',
-        },
-        {
-            icon: FaUsers,
-            title: 'Leadership',
-            skills: ['Mentorship', 'Public Speaking', 'Project Management', 'Team Building'],
-            color: 'brand.warm',
-        },
-    ];
-
     return (
         <Box id="about" py={20}>
             <Container maxW="1200px">
@@ -131,7 +55,21 @@ const About: React.FC = () => {
                         </Box>
                         <VStack align="start" spacing={5}>
                             <Text color="brand.textBody" lineHeight="1.9">
-                                As an aspiring educator at Berkeley's Teacher Education Program (BTEP) with experience
+                                As an aspiring educator at{' '}
+                                <Link
+                                    href="https://bse.berkeley.edu/katelin-tharp"
+                                    isExternal
+                                    color="brand.primary"
+                                    fontWeight="500"
+                                    _hover={{
+                                        color: 'brand.primaryLight',
+                                        textDecoration: 'underline',
+                                    }}
+                                >
+                                    Berkeley's Teacher Education Program (BTEP)
+                                    <ExternalLinkIcon mx="4px" boxSize={3} />
+                                </Link>{' '}
+                                with experience
                                 in software engineering, I bring a unique perspective to the classroom. 
                                 My journey combines rigorous technical training with a passion for education.
                             </Text>
@@ -142,18 +80,49 @@ const About: React.FC = () => {
                                 I'm teaching functional programming or English classics.
                             </Text>
                             <Text color="brand.textBody" lineHeight="1.9">
-                                Recognized with the 2025 Khoury College Undergraduate Teaching Award, I'm committed to creating
+                                Recognized with the{' '}
+                                <Link
+                                    href="https://www.khoury.northeastern.edu/meet-the-2025-khoury-college-award-winners/"
+                                    isExternal
+                                    color="brand.primary"
+                                    fontWeight="500"
+                                    _hover={{
+                                        color: 'brand.primaryLight',
+                                        textDecoration: 'underline',
+                                    }}
+                                >
+                                    2025 Khoury College Undergraduate Teaching Award
+                                    <ExternalLinkIcon mx="4px" boxSize={3} />
+                                </Link>{' '}, I'm committed to creating
                                 inclusive learning environments where every student can thrive.
                             </Text>
+
+                            {/* View Resume Button */}
+                            <HStack justify="center" mt={8} spacing={4} flexWrap="wrap">
+                                <Button
+                                    as={RouterLink}
+                                    to="/resume"
+                                    size="lg"
+                                    bg="brand.primary"
+                                    color="white"
+                                    px={8}
+                                    py={6}
+                                    borderRadius="30px"
+                                    fontWeight="500"
+                                    letterSpacing="0.5px"
+                                    _hover={{
+                                        bg: '#F7C8D3',
+                                        transform: 'translateY(-2px)',
+                                        boxShadow: '0 6px 20px rgba(244, 184, 197, 0.4)',
+                                    }}
+                                    transition="all 0.3s ease"
+                                >
+                                    View Resume
+                                </Button>
+                            </HStack>
                         </VStack>
                     </Grid>
                 </Box>
-
-                <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
-                    {skillCategories.map((category) => (
-                        <SkillCategory key={category.title} {...category} />
-                    ))}
-                </SimpleGrid>
             </Container>
         </Box>
     );

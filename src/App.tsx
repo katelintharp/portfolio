@@ -13,6 +13,8 @@ import ReversiPage from './pages/projects/ReversiPage';
 import FileSystemPage from './pages/projects/FileSystemPage';
 import PortfolioPage from './pages/projects/PortfolioPage';
 import ELAJourney from './ela-journey/ELAJourney';
+import ExperiencePage from "./pages/ExperiencePage.tsx";
+import ResumePage from "./pages/ResumePage.tsx";
 
 // Custom theme with soft pastel colors
 const config: ThemeConfig = {
@@ -66,8 +68,10 @@ function App() {
                         <Route path="/projects/wordle" element={<WordlePage />} />
                         <Route path="/projects/reversi" element={<ReversiPage />} />
                         <Route path="/projects/file-system" element={<FileSystemPage />} />
-                        <Route path="/projects/portfolio" element={<PortfolioPage />} />
+                        <Route path="/projects/website" element={<PortfolioPage />} />
                         <Route path="/ela-journey" element={<ELAJourney />} />
+                        <Route path="/experience" element={<ExperiencePage />} />
+                        <Route path="/resume" element={<ResumePage />} />
                     </Routes>
                 </Router>
             </Box>

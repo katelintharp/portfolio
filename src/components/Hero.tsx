@@ -10,7 +10,6 @@ import {
     VStack,
 } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
-import {Link} from "react-router-dom";
 
 const float = keyframes`
     0%, 100% { transform: translate(0, 0) scale(1); }
@@ -164,34 +163,6 @@ const Hero: React.FC = () => {
                             View Experience
                         </Button>
                     </HStack>
-
-                    {/* New ELA Journey Button */}
-                    <Button
-                        as={Link}
-                        to="/ela-journey"
-                        size="md"
-                        variant="outline"
-                        borderColor="brand.accent"
-                        bg="brand.accent"
-                        color="white"
-                        px={8}
-                        py={5}
-                        borderRadius="25px"
-                        fontWeight="400"
-                        letterSpacing="0.3px"
-                        fontSize="0.95rem"
-                        mt={2}
-                        _hover={{
-                            bg: 'brand.accent',
-                            color: 'white',
-                            transform: 'translateY(-2px)',
-                            boxShadow: '0 4px 15px rgba(168, 213, 186, 0.4)',
-                            borderColor: 'brand.accent',
-                        }}
-                        transition="all 0.3s ease"
-                    >
-                        📚 Paul - Click here!
-                    </Button>
                 </VStack>
             </Container>
         </Box>

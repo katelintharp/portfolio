@@ -9,7 +9,11 @@ import {
     List,
     ListItem,
     useBreakpointValue,
+    Button,
+    HStack,
 } from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface ExperienceItemProps {
     role: string;
@@ -199,6 +203,32 @@ const Experience: React.FC = () => {
                         ))}
                     </VStack>
                 </Box>
+
+                {/* View Full Experience Button */}
+                <HStack justify="center" mt={12} spacing={4} flexWrap="wrap">
+                    <Button
+                        as={RouterLink}
+                        to="/experience"
+                        size="lg"
+                        bg="brand.primary"
+                        color="white"
+                        px={8}
+                        py={6}
+                        borderRadius="30px"
+                        fontWeight="500"
+                        letterSpacing="0.5px"
+                        rightIcon={<ArrowForwardIcon />}
+                        _hover={{
+                            bg: 'brand.primary',
+                            color: 'white',
+                            transform: 'translateY(-2px)',
+                            boxShadow: '0 6px 20px rgba(156, 163, 219, 0.4)',
+                        }}
+                        transition="all 0.3s ease"
+                    >
+                        View Full Experience
+                    </Button>
+                </HStack>
             </Container>
         </Box>
     );
